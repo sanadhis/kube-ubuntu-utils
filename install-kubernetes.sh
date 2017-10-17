@@ -3,7 +3,7 @@
 function print-banner () {
     local message="$1"
     echo "##################################"
-    echo "$1"
+    echo "$message"
     echo "##################################"
 }
 
@@ -29,7 +29,7 @@ function main () {
     sudo apt-get install -y kubelet kubeadm kubectl
 }
 
-if  [ "$UID" -ne 0 ] then ;
+if  [ "$UID" -ne 0 ] ; then
     echo "Please run as root"
 else
     main "$@"
