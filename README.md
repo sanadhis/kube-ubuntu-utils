@@ -1,11 +1,6 @@
-# Kubernetes in Ubuntu: Utils & Packages
+# Ubuntu: Utils & Packages
 
 > Packages I personally think should exist when using Ubuntu to Develop application/system
-> Basic settings and script to have kubernetes running everywhere as long as the OS is Xenial (16.04).
-
-## Maintainer
-
-- Sanadhi Sutandi ([@sanadhis](https://github.com/sanadhis))
 
 ## Usage
 
@@ -13,7 +8,7 @@
 2. Run the script in terminal:
 
   ```bash
-  $ cd ubuntu-utils/
+  $ cd kube-ubuntu-utils/
   $ ./install.sh
   ```
   
@@ -27,6 +22,17 @@
 - docker (containerized now!)
 
 # Kubernetes
+> Basic settings and script to have kubernetes running everywhere as long as the OS is Xenial (16.04).
+
+## Usage
+
+1. Clone this repository
+2. Run the script in terminal:
+
+  ```bash
+  $ cd kube-ubuntu-utils/
+  $ ./install-kubernetes.sh
+  ```
 
 ## Packages for Kubernetes
 - kubelet (kubernetes' core)
@@ -48,3 +54,7 @@ Edit your systemctl kubelet.service
   $ sudo systemctl edit -l kubelet.service
   ```
 If you are using kubeadm to bring up the cluster, you can simply copy the 10-kubeadm.conf in templates/ to /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+## Maintainer
+
+- Sanadhi Sutandi ([@sanadhis](https://github.com/sanadhis))
