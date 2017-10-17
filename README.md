@@ -16,6 +16,7 @@
 - apt-transport-https, ca-certificates, software-properties-common (apt via HTTPS)
 - vim, curl (obviously need these ones)
 - htop (monitor your resources utilization)
+- bash-completion (reduce your work of typing commands)
 - figlet, cowsay (for fun, you know it)
 - unzip (zip and extract)
 - pip (package manager via pip)

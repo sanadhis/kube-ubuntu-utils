@@ -23,6 +23,8 @@ function main () {
     sudo apt-get install -y curl
     print-banner "Installing htop"
     sudo apt-get install -y htop
+    print-banner "Installing bash-completion"
+    sudo apt-get install -y bash-completion
     print-banner "Installing figlet,cowsay"
     sudo apt-get install -y figlet cowsay
     print-banner "Installing unzip"
