@@ -16,6 +16,10 @@ function taint-node () {
     kubectl taint nodes --all node-role.kubernetes.io/master-
 }
 
+function kubectl-autocompletion () {
+    echo "source <(kubectl completion bash)" >> ~/.bashrc
+}
+
 if [ "$UID" -eq 0 ] ; then
     echo "Please Do not Run as Sudo"
     echo "You will be prompted your password, and it's good"
@@ -23,4 +27,5 @@ else
     config-kubectl
     install-pod-network
     taint-node
+    kubectl-autocompletion
 fi

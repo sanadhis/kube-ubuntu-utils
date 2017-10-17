@@ -16,10 +16,6 @@ function tune-kubernetes-config () {
     # To do
 }
 
-function kubectl-config () {
-    echo "source <(kubectl completion bash)" >> ~/.bashrc
-}
-
 function main () {
     print-banner "Updating apt sources list"
     sudo apt-get update
@@ -39,5 +35,4 @@ if  [ "$UID" -ne 0 ] ; then
 else
     tune-kubernetes-config
     main "$@"
-    kubectl-config
 fi
