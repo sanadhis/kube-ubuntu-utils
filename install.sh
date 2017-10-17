@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 function print-banner () {
     local message="$1"
     echo "##################################"
@@ -21,6 +23,8 @@ function main () {
     sudo apt-get install -y curl
     print-banner "Installing htop"
     sudo apt-get install -y htop
+    print-banner "Installing figlet,cowsay"
+    sudo apt-get install -y figlet cowsay
     print-banner "Installing pip"
     sudo apt-get install -y python-pip
     print-banner "Installing docker"

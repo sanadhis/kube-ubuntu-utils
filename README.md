@@ -20,5 +20,6 @@
 - apt-transport-https, ca-certificates, software-properties-common (apt via HTTPS)
 - vim, curl (obviously need these ones)
 - htop (monitor your resources utilization)
+- figlet, cowsay (for fun, you know it)
 - pip (package manager via pip)
 - docker (containerized now!)

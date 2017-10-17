@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 function print-banner () {
     local message="$1"
     echo "##################################"
