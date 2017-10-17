@@ -16,7 +16,7 @@ function taint-node () {
     kubectl taint nodes --all node-role.kubernetes.io/master-
 }
 
-if [ "$UID" -e 0 ] ; then
+if [ "$UID" -eq 0 ] ; then
     echo "Please Do not Run as Sudo"
     echo "You will be prompted your password, and it's good"
 else
