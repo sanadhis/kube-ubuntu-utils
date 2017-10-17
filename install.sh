@@ -25,6 +25,8 @@ function main () {
     sudo apt-get install -y htop
     print-banner "Installing figlet,cowsay"
     sudo apt-get install -y figlet cowsay
+    print-banner "Installing unzip"
+    sudo apt-get install -y unzip
     print-banner "Installing pip"
     sudo apt-get install -y python-pip
     print-banner "Installing docker"

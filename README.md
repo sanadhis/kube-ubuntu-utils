@@ -21,6 +21,7 @@
 - vim, curl (obviously need these ones)
 - htop (monitor your resources utilization)
 - figlet, cowsay (for fun, you know it)
+- unzip (zip and extract)
 - pip (package manager via pip)
 - docker (containerized now!)
 
@@ -31,3 +32,16 @@
 - kubernetes-cni (installed automatically when you install above three)
 - addiitonal config for kubectl-> allowing autocompletion
 - prerequisites config -> disable swap and enable ipv4 forward for iptables
+
+## Fixing Swap Problem in Kubelet
+If you are unwilling to disable swap in your machine, you can set kubelet to compromise with your setting by adding this environment to kubelet:
+  
+  ```bash
+  $ /usr/bin/kubelet --fail-swap-on=false
+  ```
+Edit your systemctl kubelet.service
+  
+  ```bash
+  $ sudo systemctl edit -l kubelet.service
+  ```
+If you are using kubeadm to bring up the cluster, you can simply copy the 10-kubeadm.conf in templates/ to /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
