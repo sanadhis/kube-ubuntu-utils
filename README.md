@@ -1,6 +1,7 @@
-# Ubuntu Utils & Packages
+# Kubernetes in Ubuntu: Utils & Packages
 
 > Packages I personally think should exist when using Ubuntu to Develop application/system
+> Basic settings and script to have kubernetes running everywhere as long as the OS is Xenial (16.04).
 
 ## Maintainer
 
@@ -24,6 +25,8 @@
 - unzip (zip and extract)
 - pip (package manager via pip)
 - docker (containerized now!)
+
+# Kubernetes
 
 ## Packages for Kubernetes
 - kubelet (kubernetes' core)
