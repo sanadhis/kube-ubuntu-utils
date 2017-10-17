@@ -1,12 +1,14 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
+  labels:
+    app: nginx
 spec:
   selector:
     matchLabels:
       app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run 2 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
@@ -34,4 +36,4 @@ spec:
       name: nginx
       protocol: TCP
   selector:
-    name: nginx-deployment
+    app: nginx
