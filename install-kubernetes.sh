@@ -11,7 +11,7 @@ function print-banner () {
 
 function tune-kubernetes-config () {
     print-banner "Bridge IPv4 traffic to iptables chains"
-    sudo systcl net.bridge.bridge-nf-call-iptables=1
+    sudo sysctl net.bridge.bridge-nf-call-iptables=1
     print-banner "Disabling Swap"
     # To do
 }
