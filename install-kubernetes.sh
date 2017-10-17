@@ -16,6 +16,10 @@ function tune-kubernetes-config () {
     # To do
 }
 
+function kubectl-config () {
+    echo "source <(kubectl completion bash)" >> ~/.bashrc
+}
+
 function main () {
     print-banner "Updating apt sources list"
     sudo apt-get update
@@ -24,9 +28,8 @@ function main () {
     print-banner "Installing kubernetes: kubelet kubeadm kubectl"
     # add kubernetes' official key
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-    cat <<EOF >/etc/apt/sources.list.d/kubernetes.list \
-    deb http://apt.kubernetes.io/ kubernetes-xenial main \
-    EOF
+    touch /etc/apt/sources.list.d/kubernetes.list 
+    echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list 
     sudo apt-get update
     sudo apt-get install -y kubelet kubeadm kubectl
 }
@@ -34,5 +37,7 @@ function main () {
 if  [ "$UID" -ne 0 ] ; then
     echo "Please run as root"
 else
+    tune-kubernetes-config
     main "$@"
+    kubectl-config
 fi
