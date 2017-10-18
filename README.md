@@ -20,7 +20,7 @@
 - figlet, cowsay (for fun, you know it)
 - unzip (zip and extract)
 - pip (package manager via pip)
-- docker (containerized now!)
+- docker, docker-engine (containerized now!)
 
 # Kubernetes
 > Basic settings and script to have kubernetes running everywhere as long as the OS is Xenial (16.04).

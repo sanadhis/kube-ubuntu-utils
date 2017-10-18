@@ -41,7 +41,7 @@ function main () {
         $(lsb_release -cs) \
         stable"
     #finally installing docker
-    sudo apt-get update && sudo apt-get install -y docker-ce
+    sudo apt-get update && sudo apt-get install -y docker-ce docker-engine
     print-banner "Activating Docker as non-root user"
     sudo usermod -aG docker $(whoami)
 }
