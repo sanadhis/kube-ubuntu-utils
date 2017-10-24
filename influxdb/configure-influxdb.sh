@@ -9,41 +9,50 @@ function print-banner () {
     echo "##################################"
 }
 
-function configuring-admin () {
+function configure-admin () {
     print-banner "Registering admin user"
     local username="$1"
     local password="$2"    
-    influx -execute "CREATE USER ${username} WITH ${password} WITH ALL PRIVILEGES"
+    influx -execute "CREATE USER ${username} WITH PASSWORD '${password}' WITH ALL PRIVILEGES"
 }
 
-function configuring-heapster-user () {
+function configure-heapster-user () {
     print-banner "Registering heapster user to read and write"
     local username="$1"
     local password="$2"    
-    influx -execute "CREATE USER ${username} WITH ${password}"
-    influx -execute "GRANT [READ,WRITE,ALL] ON _k8s to ${username}"
+    influx -execute "CREATE USER ${username} WITH PASSWORD '${password}'"
+    influx -execute "GRANT ALL ON k8s to ${username}"
 }
 
-function configuring-grafana-user () {
+function configure-grafana-user () {
     print-banner "Registering grafana user to read only"
     local username="$1"
     local password="$2"    
-    influx -execute "CREATE USER ${username} WITH ${password}"
-    influx -execute "GRANT [READ] ON _k8s to ${username}"
+    influx -execute "CREATE USER ${username} WITH PASSWORD '${password}'"
+    influx -execute "GRANT READ ON k8s to ${username}"
 }
 
 if  [ "$UID" -ne 0 ] ; then
     echo "Please run as root"
 else
     print-banner "Input username and password for admin"
-    read -p "Enter USERNAME PASSWORD": admin_username admin_password
-    configuring-admin "$admin_username" "$admin_password"
+    read -p "Enter USERNAME": admin_username
+    read -p "Enter PASSWORD": admin_password
+    configure-admin "$admin_username" "$admin_password"
 
     print-banner "Input username and password for heapster"
-    read -p "Enter USERNAME PASSWORD": heapster_username heapster_password
-    configuring-admin "$heapster_username" "$heapster_password"
+    read -p "Enter USERNAME": heapster_username
+    read -p "Enter PASSWORD": heapster_password
+    configure-heapster-user "$heapster_username" "$heapster_password"
     
     print-banner "Input username and password for grafana"
-    read -p "Enter USERNAME PASSWORD": grafana_username grafana_password
-    configuring-admin "$grafana_username" "$grafana_password"
+    read -p "Enter USERNAME": grafana_username
+    read -p "Enter PASSWORD": grafana_password
+    configure-grafana-user "$grafana_username" "$grafana_password"
+
+    print-banner "Copy Configuration File to Enable Authentication"
+    sudo cp templates/influxdb.conf /etc/influxdb/influxdb.conf
+
+    print-banner "Restarting influxdb service"    
+    sudo service influxdb restart
 fi

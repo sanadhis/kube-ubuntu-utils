@@ -25,7 +25,7 @@ function main () {
     print-banner "Updating apt sources list"
     sudo apt-get update
     print-banner "Installing Influxdb"
-    sudo apt-get install influxdb
+    sudo apt-get install -y influxdb
     print-banner "Starting influxdb service"    
     sudo service influxdb start
 }

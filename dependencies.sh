@@ -16,7 +16,7 @@ function main () {
     for package in $packages
     do
         print-banner "Installing ${package}"
-        sudo apt-get install $package
+        sudo apt-get install -y $package
     done
 }
 
