@@ -17,6 +17,8 @@ function main () {
                     apt-transport-https \
                     ca-certificates \
                     software-properties-common
+    print-banner "Installing git"
+    sudo apt-get install -y git
     print-banner "Installing Vim"
     sudo apt-get install -y vim
     print-banner "Installing curl"

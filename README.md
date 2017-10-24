@@ -14,6 +14,7 @@
   
 ## Packages
 - apt-transport-https, ca-certificates, software-properties-common (apt via HTTPS)
+- git (the most popular version control system)
 - vim, curl (obviously need these ones)
 - htop (monitor your resources utilization)
 - bash-completion (reduce your work of typing commands)
