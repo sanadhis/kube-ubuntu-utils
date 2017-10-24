@@ -9,6 +9,11 @@ function print-banner () {
     echo "##################################"
 }
 
+function ensure-dependencies () {
+    print-banner "Ensuring dependencies"    
+    ./dependencies.sh "apt-transport-https" "curl"
+}
+
 function add-influxdb-repo-conf () {
     print-banner "Adding configuration for influxdb repository"    
     curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
@@ -28,6 +33,7 @@ function main () {
 if  [ "$UID" -ne 0 ] ; then
     echo "Please run as root"
 else
+    ensure-dependencies
     add-influxdb-repo-conf
     main "$@"
 fi
