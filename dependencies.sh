@@ -10,7 +10,7 @@ function print-banner () {
 }
 
 function main () {
-    local packages = "$@"
+    local packages="$@"
     print-banner "Updating apt sources list"
     sudo apt-get update
     for package in $packages
