@@ -41,29 +41,25 @@ function configure-k8s-db () {
         "CREATE RETENTION POLICY \"default\" ON k8s DURATION INF REPLICATION 1 DEFAULT"
 }
 
-if  [ "$UID" -ne 0 ] ; then
-    echo "Please run as root"
-else
-    print-banner "Input username and password for admin"
-    read -p "Enter USERNAME": admin_username
-    read -p "Enter PASSWORD": admin_password
-    configure-admin "$admin_username" "$admin_password"
+print-banner "Input username and password for admin"
+read -p "Enter USERNAME": admin_username
+read -p "Enter PASSWORD": admin_password
+configure-admin "$admin_username" "$admin_password"
 
-    print-banner "Input username and password for heapster"
-    read -p "Enter USERNAME": heapster_username
-    read -p "Enter PASSWORD": heapster_password
-    configure-heapster-user "$heapster_username" "$heapster_password"
-    
-    print-banner "Input username and password for grafana"
-    read -p "Enter USERNAME": grafana_username
-    read -p "Enter PASSWORD": grafana_password
-    configure-grafana-user "$grafana_username" "$grafana_password"
+print-banner "Input username and password for heapster"
+read -p "Enter USERNAME": heapster_username
+read -p "Enter PASSWORD": heapster_password
+configure-heapster-user "$heapster_username" "$heapster_password"
 
-    print-banner "Copy Configuration File to Enable Authentication"
-    sudo cp templates/influxdb.conf /etc/influxdb/influxdb.conf
+print-banner "Input username and password for grafana"
+read -p "Enter USERNAME": grafana_username
+read -p "Enter PASSWORD": grafana_password
+configure-grafana-user "$grafana_username" "$grafana_password"
 
-    print-banner "Restarting influxdb service"    
-    sudo service influxdb restart
+print-banner "Copy Configuration File to Enable Authentication"
+sudo cp templates/influxdb.conf /etc/influxdb/influxdb.conf
 
-    configure-k8s-db "$admin_username" "$admin_password"
-fi
+print-banner "Restarting influxdb service"    
+sudo service influxdb restart
+
+configure-k8s-db "$admin_username" "$admin_password"
