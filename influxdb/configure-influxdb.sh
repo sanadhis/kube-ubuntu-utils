@@ -32,6 +32,15 @@ function configure-grafana-user () {
     influx -execute "GRANT READ ON k8s to ${username}"
 }
 
+function configure-k8s-db () {
+    print-banner "Creating k8s database"
+    local username="$1"
+    local password="$2"    
+    influx -username ${username} -password ${password} -execute "CREATE DATABASE k8s"
+    influx -username ${username} -password ${password} -execute \
+        "CREATE RETENTION POLICY \"default\" ON k8s DURATION INF REPLICATION 1 DEFAULT"
+}
+
 if  [ "$UID" -ne 0 ] ; then
     echo "Please run as root"
 else
@@ -55,4 +64,6 @@ else
 
     print-banner "Restarting influxdb service"    
     sudo service influxdb restart
+
+    configure-k8s-db "$admin_username" "$admin_password"
 fi
