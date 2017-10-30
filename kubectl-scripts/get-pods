@@ -1,0 +1,12 @@
+#!/bin/bash
+args1="$1"
+
+if [ "$args1" == "--help" ] || [ "$args1" == "help" ] ; then
+    echo "usage:"
+    echo "./get-pods [pod-name] [namespace]"
+else
+    pod_name="$1"
+    namespace="$2"
+    kubectl get pods -l app=$pod_name --namespace=${namespace:-default} -o name | \
+	        sed 's/^.*\///'
+fi
