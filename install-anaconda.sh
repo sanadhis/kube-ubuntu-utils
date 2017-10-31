@@ -14,6 +14,7 @@ function pre-installation () {
     mkdir $HOME/.temp
     wget https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh \
         -O $HOME/.temp/conda.sh
+    chmod +x $HOME/.temp/conda.sh
 }
 
 function main () {
