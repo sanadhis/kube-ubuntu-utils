@@ -11,7 +11,7 @@ function print-banner () {
 
 function pre-installation () {
     print-banner "Getting anaconda installation script"
-    mkdir $HOME/.temp
+    mkdir -p $HOME/.temp
     wget https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh \
         -O $HOME/.temp/conda.sh
     chmod +x $HOME/.temp/conda.sh
