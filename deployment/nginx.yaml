@@ -21,6 +21,11 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
+      containers:
+      - name: tomcat
+        image: tomcat:8.0
+        ports:
+        - containerPort: 8080
 ---
 kind: Service
 apiVersion: v1
@@ -31,9 +36,13 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
+    - port: 9201
       targetPort: 80
       name: nginx
+      protocol: TCP
+    - port: 9200
+      targetPort: 8080
+      name: tomcat
       protocol: TCP
   selector:
     app: nginx
