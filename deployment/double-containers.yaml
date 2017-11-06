@@ -1,27 +1,24 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: nginx
-  labels:
-    app: nginx
+  name: two-containers
 spec:
   selector:
     matchLabels:
-      app: nginx
-  replicas: 1 # tells deployment to run 2 pods matching the template
+      app: nginx-tomcat
+  replicas: 1 # tells deployment to run 1 pod matching the template
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
       # generated from the deployment name
       labels:
-        app: nginx
+        app: nginx-tomcat
     spec:
       containers:
       - name: nginx
         image: nginx:1.7.9
         ports:
         - containerPort: 80
-      containers:
       - name: tomcat
         image: tomcat:8.0
         ports:
@@ -30,9 +27,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: svc-nginx
-  labels:
-    name: svc-nginx
+  name: two-containers
 spec:
   type: NodePort
   ports:
