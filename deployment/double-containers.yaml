@@ -2,6 +2,8 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: two-containers
+  labes:
+    app: nginx-tomcat
 spec:
   selector:
     matchLabels:
@@ -40,4 +42,4 @@ spec:
       name: tomcat
       protocol: TCP
   selector:
-    app: nginx
+    app: nginx-tomcat
