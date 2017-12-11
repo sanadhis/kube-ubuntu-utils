@@ -5,6 +5,7 @@ Note: Installing libcudnn is necessary for Tensorflow (version > 1.3.0) to utili
 The procedure was checked and updated on 11th Dec 2017
 * Working for tensorflow: 1.4.0-gpu-py3
 * Working for the latest version: latest-gpu-py3 (build 9th Dec 2017)
+
 View available images on official page: [tensorflow](https://hub.docker.com/r/tensorflow/tensorflow/tags/)
 
 ## Links
