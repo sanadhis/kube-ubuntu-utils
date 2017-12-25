@@ -1,3 +1,28 @@
+# Running the deployment
+
+## Building the minimum docker image of tensorflow and some basic libraries
+Execute:
+```bash
+$ make all VERSION=gpu-py3
+```
+**Note: make sure to have docker installed.**
+
+## Creating namespace
+```bash
+$ kubectl create namespace sanadhi-test
+```
+
+## Launching the application into Kubernetes
+```bash
+$ kubectl create -f tensorflow-dl-py3.yaml
+```
+
+## Gettin the token for logging in
+```bash
+$ kubectl logs tensorflow --namespace=sanadhi-test
+```
+
+
 # Issue with Tensorflow-GPU-Python3 in Kubernetes
 Note: Installing libcudnn is necessary for Tensorflow (version > 1.3.0) to utilize the GPU. Follow the given links to setup libcudnn.
 **By reading this, it is assumed that you have already had working Tensorflow before in Kubernetes, so you may familiar with NVIDIA/cuda Driver, NVIDIA-DOCKER Plugin, Shared HostPath of Kubernetes, and Reserving GPU Resources in Kubernetes.**

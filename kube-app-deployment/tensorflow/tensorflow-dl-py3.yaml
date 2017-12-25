@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tensorflow-3
+  name: tensorflow
   namespace: sanadhi-test
   labels:
-    name: tensorflow-3
+    name: tensorflow
 spec:
   volumes:
   - hostPath:
@@ -23,7 +23,7 @@ spec:
       path: /usr/lib/x86_64-linux-gnu
     name: lib-linux-gnu
   containers:
-  - name:  tensorflow-3
+  - name:  tensorflow
     image: sanadhis/dl-docker:gpu-py3
     imagePullPolicy: IfNotPresent
     ports:
@@ -56,20 +56,20 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: svc-tensorflow-3
+  name: svc-tensorflow
   namespace: sanadhi-test
   labels:
-    name: svc-tensorflow-3
+    name: svc-tensorflow
 spec:
   type: NodePort
   ports:
     - port: 9071
       targetPort: 8888
-      name: tensorflow-3
+      name: tensorflow
       protocol: TCP
     - port: 9072
       targetPort: 6006
-      name: tensorflow-5
+      name: tensorflow-2
       protocol: TCP
   selector:
-    name: tensorflow-3
+    name: tensorflow
