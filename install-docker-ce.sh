@@ -37,7 +37,9 @@ function pre-installation () {
 
 function install () {
     print-banner "Install docker-ce stable"
-    sudo apt-get install docker-ce
+    sudo apt-get update && sudo apt-get install -y docker-ce docker-engine
+    print-banner "Activating Docker as non-root user"
+    sudo usermod -aG docker $(whoami)
 }
 
 function main () {
