@@ -17,22 +17,13 @@ function main () {
                     apt-transport-https \
                     ca-certificates \
                     software-properties-common
-    print-banner "Installing git"
-    sudo apt-get install -y git
-    print-banner "Installing Vim"
-    sudo apt-get install -y vim
-    print-banner "Installing curl"
-    sudo apt-get install -y curl
-    print-banner "Installing htop"
-    sudo apt-get install -y htop
-    print-banner "Installing bash-completion"
-    sudo apt-get install -y bash-completion
-    print-banner "Installing figlet,cowsay"
-    sudo apt-get install -y figlet cowsay
-    print-banner "Installing unzip"
-    sudo apt-get install -y unzip
-    print-banner "Installing pip"
-    sudo apt-get install -y python-pip
+    softwares=( "git" "vim" "curl" "htop" "bash-completion" \
+               "figlet" "unzip" "python-pip" )
+    for software in ${softwares[@]}
+    do
+        print-banner "Installing $software"
+        sudo apt-get install -y $software
+    done
     print-banner "Installing docker"
     #docker's official GPG key
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -43,7 +34,7 @@ function main () {
         $(lsb_release -cs) \
         stable"
     #finally installing docker
-    sudo apt-get update && sudo apt-get install -y docker-ce docker-engine
+    sudo apt-get update && sudo apt-get install -y docker-ce #docker-engine
     print-banner "Activating Docker as non-root user"
     sudo usermod -aG docker $(whoami)
 }
