@@ -20,7 +20,8 @@ function apt-via-https () {
                 apt-transport-https \
                 ca-certificates \
                 curl \
-                software-properties-common}
+                software-properties-common
+    }
 
 function pre-installation () {
     print-banner "Add Docker's official GPG key"
