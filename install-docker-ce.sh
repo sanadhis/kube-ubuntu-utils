@@ -21,11 +21,11 @@ function apt-via-https () {
                 ca-certificates \
                 curl \
                 software-properties-common
-    }
+}
 
 function pre-installation () {
     print-banner "Add Docker's official GPG key"
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -    print-banner "Installing Influxdb"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -    
     print-banner "Verify key"    
     sudo apt-key fingerprint 0EBFCD88
     print-banner "Setup stable repository"    
