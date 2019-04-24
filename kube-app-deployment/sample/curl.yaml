@@ -1,0 +1,19 @@
+##############################################################################
+# Curl for debugging
+##############################################################################
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curl-debug
+  labels:
+    app: curl-debug
+spec:
+  containers:
+  - name: curl-debug
+    image: appropriate/curl:latest
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 6969
+    command: [ "/bin/sh", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+---

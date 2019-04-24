@@ -1,0 +1,41 @@
+##############################################################################
+# Nginx service
+##############################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-sample
+  labels:
+    app: nginx
+    service: nginx
+spec:
+  ports:
+    - port: 80
+      name: http
+  selector:
+    app: nginx
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-v1
+  labels:
+    app: nginx
+    version: v1
+spec:
+  replicas: 1 
+  template:
+      metadata:
+        annotations:
+          sidecar.istio.io/inject: "true"
+        labels:
+          app: nginx
+          version: v1
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80
+---
